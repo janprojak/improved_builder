@@ -5,11 +5,10 @@
 #include <ostream>
 #include <string>
 
+class CarBuilder;
+
 class Car {
 public:
-  Car(const std::string &brand_name, const std::string &model_name,
-      unsigned production_year, unsigned car_mileage, unsigned max_fuel_level);
-
   const std::string &GetBrandName() const;
   const std::string &GetModelName() const;
 
@@ -25,6 +24,9 @@ public:
   bool Stop();
 
 private:
+  friend class CarBuilder;
+  Car() = default;
+
   std::string brand_name_;
   std::string model_name_;
   unsigned production_year_;

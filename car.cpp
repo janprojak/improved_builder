@@ -1,19 +1,5 @@
 #include "car.hpp"
 
-#include <stdexcept>
-
-Car::Car(std::string const &brand_name, std::string const &model_name,
-         unsigned production_year, unsigned car_mileage,
-         unsigned max_fuel_level)
-    : brand_name_(brand_name), model_name_(model_name),
-      production_year_(production_year), max_fuel_level_(max_fuel_level),
-      mileage_(car_mileage),
-      current_fuel_level_(0), state_{CarState::kStopped} {
-  if (max_fuel_level_ == 0) {
-    throw std::logic_error("max_fuel_level_ must be bigger that zero");
-  }
-}
-
 const std::string &Car::GetBrandName() const { return brand_name_; }
 const std::string &Car::GetModelName() const { return model_name_; }
 

@@ -1,11 +1,20 @@
-#include "car.hpp"
+#include "car_builder.hpp"
 
 #include <iostream>
+#include <ostream>
 #include <sstream>
 
 int main() {
-  const Car car{"Fiat", "Tipo", 2016 /*production_year*/, 0 /*mileage*/,
-                45 /*max_fuel_level*/};
+
+  const Car car = CarBuilder()
+                      .WithBrandName("Fiat")
+                      .WithModelName("Tipo")
+                      .WithProductionYear(2016)
+                      .WithMileage(0)
+                      .WithMaxFuelLevel(45)
+                      .WithCurrentFuelLevel(0)
+                      .WithCarState(CarState::kStopped)
+                      .Build();
 
   const auto expected_result = "Car{brand_name: Fiat"
                                ", model_name: Tipo"
@@ -22,7 +31,11 @@ int main() {
   if (string_stream.str() == expected_result) {
     std::cout << "PASSED" << std::endl;
   } else {
-    std::cerr << "FAILED" << std::endl;
+    std::cerr << "FAILED\n";
+    std::cerr << "EXPECTED:\n";
+    std::cerr << expected_result << "\n";
+    std::cerr << "ACTUAL:\n";
+    std::cerr << car << std::endl;
   }
 
   return 0;
