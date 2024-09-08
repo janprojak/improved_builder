@@ -1,4 +1,9 @@
 #-------------------------------------------------------------------#
+# cmake version
+
+cmake_minimum_required(VERSION 3.22)
+
+#-------------------------------------------------------------------#
 # project flags config
 
 set(CMAKE_CXX_STANDARD 17)
@@ -13,14 +18,14 @@ project(builder_with_mandatory_methods_called)
 # project sources
 
 set(HEADERS
-    car_builder.hpp
-    car_state.hpp
-    car.hpp
+    headers/car_builder.hpp
+    headers/car_state.hpp
+    headers/car.hpp
 )
 
 set(SOURCES
-    car_builder.cpp
-    car.cpp
+    sources/car_builder.cpp
+    sources/car.cpp
     main.cpp
 )
 
@@ -28,5 +33,12 @@ set(SOURCES
 # project type
 
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
+
+#-------------------------------------------------------------------#
+# include directories
+
+target_include_directories(${PROJECT_NAME}
+    PRIVATE ${PROJECT_SOURCE_DIR}/headers
+)
 
 #-------------------------------------------------------------------#
