@@ -2,6 +2,8 @@
 
 #include "car.hpp"
 
+#include <bitset>
+
 class CarBuilder {
 public:
   CarBuilder &WithBrandName(const std::string &brand_name);
@@ -15,5 +17,16 @@ public:
   Car Build();
 
 private:
+  enum MandatoryValues {
+    kBrandName = 0,
+    kModelName,
+    kProductionYear,
+    kMileage,
+    kMaxFuelLevel,
+
+    Count
+  };
+  std::bitset<MandatoryValues::Count> mandatory_values_;
+
   Car car_;
 };

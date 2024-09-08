@@ -29,11 +29,11 @@ private:
 
   std::string brand_name_;
   std::string model_name_;
-  unsigned production_year_;
-  unsigned max_fuel_level_;
-  unsigned mileage_;
-  unsigned current_fuel_level_;
-  CarState state_;
+  unsigned production_year_{0u};
+  unsigned max_fuel_level_{0u};
+  unsigned mileage_{0u};
+  unsigned current_fuel_level_{0u};
+  CarState state_{CarState::kStopped};
 };
 
 std::ostream &operator<<(std::ostream &out, const Car &car);
